@@ -12,11 +12,11 @@ on:
   push:
     branches: [ main ]
     paths:
-    - "$ID_PATH/**"
+    - "rfc7525/**"
   pull_request:
     branches: [ main ]
     paths:
-    - "$ID_PATH/**"
+    - "rfc7525/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
