@@ -12,11 +12,11 @@ on:
   push:
     branches: [ main ]
     paths:
-    - "rfc7525/**"
+    - "${{ env.MY_PATH }}/**"
   pull_request:
     branches: [ main ]
     paths:
-    - "rfc7525/**"
+    - "${{ env.MY_PATH }}/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
