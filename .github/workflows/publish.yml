@@ -4,7 +4,7 @@ name: Build-I-D
 
 # This action only watches one single directory!
 env:
-  dir: rfc7525
+  ID_PATH: rfc7525
 
 # Controls when the workflow will run
 on:
@@ -12,11 +12,11 @@ on:
   push:
     branches: [ main ]
     paths:
-    - ${{ dir }}/'**'
+    - ${{ ID_PATH }}/'**'
   pull_request:
     branches: [ main ]
     paths:
-    - ${{ dir }}/'**'
+    - ${{ ID_PATH }}/'**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
