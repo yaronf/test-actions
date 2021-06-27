@@ -42,13 +42,13 @@ jobs:
       # Make artifacts
       - name: Make artifacts
         run: |
-          cd ${{dir}}
+          cd $ID_PATH
           make
 
       # Create output
       - name: Create output
         run: |
-          mv ${{dir}}/*.html docs/
+          mv $ID_PATH/*.html docs/
 
       # Publish
       - name: Publish
