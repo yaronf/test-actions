@@ -24,7 +24,9 @@ jobs:
     steps:
       # Create IETF I-D environment
       - name: Create I-D environment
-        run: sudo gem install kramdown-rfc2629
+        run: |
+          sudo gem install kramdown-rfc2629
+          sudo pip3 install xml2rfc
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
