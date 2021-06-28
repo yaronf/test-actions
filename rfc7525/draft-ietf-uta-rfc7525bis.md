@@ -1,5 +1,5 @@
 ---
-title: Recommendations for Cyan Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)
+title: Recommendations for Longtitudinal Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)
 abbrev: TLS Recommendations
 docname: draft-ietf-uta-rfc7525bis-latest
 category: bcp
