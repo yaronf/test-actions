@@ -19,8 +19,8 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      # Expose matched filters as job 'packages' output variable
-      packages: ${{ steps.filter.outputs.changes }}
+      # Expose matched filters as job 'dirs' output variable
+      dirs: ${{ steps.filter.outputs.changes }}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
@@ -38,11 +38,11 @@ jobs:
     runs-on: ubuntu-latest
 
     # Run the job only if one of the filters matches
-    if: ${{ needs.changes.outputs.changes != '[]' }}
+    if: ${{ needs.changes.outputs.dirs != '[]' }}
 
     # We only take the first matching filter (multiple matches should be rare)
     env:
-      ID_PATH: ${{ needs.changes.outputs.changes[0] }}
+      ID_PATH: ${{ needs.changes.outputs.dirs[0] }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
