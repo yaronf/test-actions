@@ -42,7 +42,7 @@ jobs:
 
     # We only take the first matching filter (multiple matches should be rare)
     env:
-      ID_PATH: ${{ needs.changes.outputs.dirs[0] }}
+      ID_PATH: ${{ fromJSON(needs.changes.outputs.dirs)[0] }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
