@@ -1,4 +1,5 @@
-# This is a basic workflow to help you get started with Actions
+# This workflow is triggered by a push into main from certain directories
+# and publishes the Internet Draft into Github Pages (the gh-pages branch)
 
 name: Build-I-D
 
@@ -13,7 +14,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a "changes" job and a dependent "build" job
   changes:
@@ -28,6 +28,8 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: filter
         with:
+      # IMPORTANT: this is where the script is configured.
+      # Each filter name must match the directory name.
           filters: |
             rfc7525: rfc7525/**
             rfc9999: rfc9999/**
@@ -40,7 +42,7 @@ jobs:
     # Run the job only if one of the filters matches
     if: ${{ needs.changes.outputs.dirs != '[]' }}
 
-    # We only take the first matching filter (multiple matches should be rare)
+    # We only take the first matching filter (multiple matches should be rare anyway)
     env:
       ID_PATH: ${{ fromJSON(needs.changes.outputs.dirs)[0] }}
 
@@ -55,7 +57,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Make artifacts
+      # Make artifacts, in particular the I-D HTML-formatted version
       - name: Make artifacts
         run: |
           cd $ID_PATH
@@ -66,7 +68,7 @@ jobs:
         run: |
           mv $ID_PATH/*.html docs/
 
-      # Publish
+      # Publish to Github Pages
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
         with:
