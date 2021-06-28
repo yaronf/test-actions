@@ -2,10 +2,6 @@
 
 name: Build-I-D
 
-# This action only watches one single directory!
-env:
-  ID_PATHS: rfc7525 star-delegation
-
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -26,12 +22,15 @@ jobs:
       # Expose matched filters as job 'packages' output variable
       packages: ${{ steps.filter.outputs.changes }}
     steps:
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: |
-          rfc7525: rfc7525/**
-          rfc9999: rfc9999/**
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            rfc7525: rfc7525/**
+            rfc9999: rfc9999/**
 
   build:
     needs: changes
